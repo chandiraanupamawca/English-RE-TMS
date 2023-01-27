@@ -68,7 +68,7 @@ app.get("/", (req, res) => {
         });
         Swal.fire(
           'Great!',
-          'You linked Google Account to Aduruthuma Successfully',
+          'You linked Google Account to English RE Successfully',
           'success'
         )
       }
@@ -103,7 +103,7 @@ function  uploader() {
   });
 
     title = $$('matname').value;
-    description = "Hosted by Aduruthuma LMS";
+    description = "Hosted by English RE LMS";
     console.log(title);
     console.log(description);
     console.log(tags);

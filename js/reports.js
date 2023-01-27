@@ -224,7 +224,7 @@ xhr00001.onreadystatechange = function () {
                 if(rr["meetings"][Object.keys(rr["meetings"])[i]]["topic"].includes(ttpic)){
             
                     
-                    if (rr["meetings"][Object.keys(rr["meetings"])[i]]!=null&&rr["meetings"][Object.keys(rr["meetings"])[i]]["source"].includes("Aduruthuma")){
+                    if (rr["meetings"][Object.keys(rr["meetings"])[i]]!=null&&rr["meetings"][Object.keys(rr["meetings"])[i]]["source"].includes("English RE")){
                      
                         var row2 = table.insertRow(-1);
                      temp11 = temp11+1;

@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < array.length; i++) {
       const el = array[i];
 if(el.innerHTML.includes("branding/product")){
-  el.innerHTML ='<a class="gb_je gb_uc gb_he" aria-label="Forms" href="https://docs.google.com/forms/?authuser=0" tabindex="0" title="Forms"><img class="gb_yc gb_5d" src="https://www.gstatic.com/images/branding/product/1x/forms_2020q4_48dp.png" srcset="https://www.gstatic.com/images/branding/product/1x/forms_2020q4_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/forms_2020q4_48dp.png 2x " alt="" aria-hidden="true" role="presentation" style="width:40px;height:40px"><span class="gb_4d gb_1c">Aduruthuma Forms </span></a>'
+  el.innerHTML ='<a class="gb_je gb_uc gb_he" aria-label="Forms" href="https://docs.google.com/forms/?authuser=0" tabindex="0" title="Forms"><img class="gb_yc gb_5d" src="https://www.gstatic.com/images/branding/product/1x/forms_2020q4_48dp.png" srcset="https://www.gstatic.com/images/branding/product/1x/forms_2020q4_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/forms_2020q4_48dp.png 2x " alt="" aria-hidden="true" role="presentation" style="width:40px;height:40px"><span class="gb_4d gb_1c">English RE Forms </span></a>'
 }
       
     }
@@ -33,10 +33,10 @@ save()
     for (let i = 0; i < array.length; i++) {
       const el = array[i];
 if(el.innerText=="Send"){
-  el.innerText ="Save to Aduruthuma"
+  el.innerText ="Save to English RE"
 }
 if(el.innerText.includes('Collect emails')){
-  el.innerHTML ="<h1><b>Successfully Saved to Aduruthuma LMS.<b></h1>"
+  el.innerHTML ="<h1><b>Successfully Saved to English RE<b></h1>"
 }   
     }
 
