@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html
+	lang="en"
+	class="light-style layout-menu-fixed"
+	dir="ltr"
+	data-theme="theme-default"
+	data-assets-path="assets/"
+	data-template="vertical-menu-template-free"
+	>
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+			/>
+		<title>Create MCQ Exam - English RE</title>
+		<meta name="description" content="" />
+		<!-- Favicon -->
+		<link rel="icon" type="image/x-icon" href="images/icon.png" />
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+			rel="stylesheet"
+			/>
+		<!-- Icons. Uncomment required icon fonts -->
+		<link rel="stylesheet" href="assets/vendor/fonts/boxicons.css" />
+		<!-- Core CSS -->
+		<link rel="stylesheet" href="assets/vendor/css/core.css" class="template-customizer-core-css" />
+		<link rel="stylesheet" href="assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+		<link rel="stylesheet" href="assets/css/demo.css" />
+		<!-- Vendors CSS -->
+		<link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+		<!-- Page CSS -->
+		<!-- Helpers -->
+		<script src="assets/vendor/js/helpers.js"></script>
+<script>
+			authtk = "R6VzrAkdsXDAaEOT^Tob19O5@$9@V#$Ic&u!QCGR4LO$3&ktCV"
+		var CryptoJS = require("crypto-js");
+</script>
+		<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+		<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+		<script src="assets/js/config.js"></script>
+		<script src="js/sweetalert2@11.js"></script>
+		<script src="assets/vendor/libs/jquery/jquery.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.8/firebase-app.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.8/firebase-auth.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.8/firebase-database.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="/admin/config.js"></script>
+		<script src="js/uploader.js"></script>
+		<script>
+						const firebaseConfig = {
+  apiKey: "AIzaSyCg716zYeuSWH8lOMnkJF1FankbYTTGtEg",
+  authDomain: "english-re-learning.firebaseapp.com",
+  databaseURL: "https://english-re-learning-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "english-re-learning",
+  storageBucket: "english-re-learning.appspot.com",
+  messagingSenderId: "1073532461163",
+  appId: "1:1073532461163:web:c6965b2ca43cf0108e512e"
+};
+
+
+uploaderjs = uploaderjs.initializeApp(firebaseConfig, 'secondary');
+		</script>
+	</head>
+	<body>
+		<!-- Layout wrapper -->
+		<div class="layout-wrapper layout-content-navbar">
+			<div class="layout-container">
+				<!-- Menu -->
+				<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+					<div class="app-brand demo">
+						<a href="/" class="app-brand-link">
+						<span class="app-brand-logo demo">
+						<img src="images/LMS-Logo.png" width="10%" alt="English-RE-Logo">
+						</span>
+						</a>
+						<a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+						<i class="bx bx-chevron-left bx-sm align-middle"></i>
+						</a>
+					</div>
+					<div class="menu-inner-shadow"></div>
+					<ul class="menu-inner py-1">
+						<!-- Dashboard -->
+						<li class="menu-item">
+							<a href="/" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-home-circle"></i>
+								<div data-i18n="Analytics">Dashboard</div>
+							</a>
+						</li>
+						<!-- Classes -->
+						<li class="menu-item">
+							<a href="javascript:void(0);" class="menu-link menu-toggle">
+								<i class="menu-icon tf-icons bx bx-chalkboard"></i>
+								<div data-i18n="Layouts">Classes</div>
+							</a>
+							<ul id="ulclz" class="menu-sub" style="cursor: pointer;">
+							</ul>
+						</li>
+						<!-- Class Settings -->
+						<li class="menu-item">
+							<a href="class-settings" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-cog"></i>
+								<div data-i18n="Layouts">Class Settings</div>
+							</a>
+						</li>
+						<!-- Exams -->
+						<li class="menu-item active">
+							<a href="exmain" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-timer"></i>
+								<div data-i18n="Layouts">Exams</div>
+							</a>
+						</li>
+						<!-- Reports -->
+						<li class="menu-item">
+							<a href="javascript:void(0);" class="menu-link menu-toggle">
+								<i class="menu-icon tf-icons bx bxs-report"></i>
+								<div data-i18n="Layouts">Reports</div>
+							</a>
+							<ul class="menu-sub">
+								<li class="menu-item">
+									<a href="meeting-reports" class="menu-link">
+										<div data-i18n="Without menu">Meeting Reports</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a href="payment-reports" class="menu-link">
+										<div data-i18n="Without navbar">Payment Reports</div>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<!-- Students -->
+						<li class="menu-item">
+							<a href="students" class="menu-link">
+								<i class="menu-icon tf-icons bx bxs-user-account"></i>
+								<div data-i18n="Layouts">Students</div>
+							</a>
+						</li>
+						<!-- Settings -->
+						<li class="menu-header small text-uppercase">
+							<span class="menu-header-text">Settings</span>
+						</li>
+						<li class="menu-item">
+							<a href="edit-profile" class="menu-link">
+								<i class="menu-icon tf-icons bx bxs-user"></i>
+								<div data-i18n="Analytics">Edit Profile</div>
+							</a>
+						</li>
+						<li class="menu-item">
+							<a href="account-settings" class="menu-link">
+								<i class="menu-icon tf-icons bx bxs-wrench"></i>
+								<div data-i18n="Analytics">Account Settings</div>
+							</a>
+						</li>
+						</li>
+						<!-- Support -->
+						<li class="menu-header small text-uppercase"><span class="menu-header-text">Support</span></li>
+						<li class="menu-item">
+							<a href="#" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-file"></i>
+								<div data-i18n="Documentation">Documentation</div>
+							</a>
+						</li>
+						<li class="menu-item">
+							<a href="#" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-support"></i>
+								<div data-i18n="Support">Support Center</div>
+							</a>
+						</li>
+					</ul>
+				</aside>
+				<!-- / Menu -->
+				<!-- Layout container -->
+				<div class="layout-page">
+					<!-- Navbar -->
+					<nav 
+						class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+						id="layout-navbar"
+						>
+						<div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+							<a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+							<i class="bx bx-menu bx-sm"></i>
+							</a>
+						</div>
+						<div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+							<!-- Search -->
+							<div class="navbar-nav align-items-center">
+								<div class="nav-item d-flex align-items-center">
+									<i class="bx bx-search fs-4 lh-0"></i>
+									<input
+										type="text"
+										class="form-control border-0 shadow-none"
+										placeholder="Search..."
+										aria-label="Search..."
+										/>
+								</div>
+							</div>
+							<!-- /Search -->
+							<ul class="navbar-nav flex-row align-items-center ms-auto">
+								<!-- Place this tag where you want the button to render. -->
+								<!--Disply Time-->
+								<span id="live_time" class="badge bg-label-primary rounded-pill" style="font-size: 16px;">Updating</span>
+								<script>
+									setInterval(myTimer, 1000);
+									
+									function myTimer() {
+									const ddd = new Date();
+									document.getElementById("live_time").innerHTML = ddd.toLocaleTimeString();
+									}
+								</script>
+								<li class="nav-item lh-1 me-3">
+								</li>
+								<!-- User -->
+								<script>
+									function themic (){
+										if(document.getElementById("theme").href.includes("dark")){
+											document.getElementById("core").href = "assets/vendor/css/core.css"
+											document.getElementById("theme").href = "assets/vendor/css/theme-default.css"
+											localStorage.setItem("theme","light")
+										} else{
+											document.getElementById("core").href = "assets/vendor/css/core-dark.css"
+											document.getElementById("theme").href = "assets/vendor/css/theme-default-dark.css"
+											document.getElementById("swd").href = "assets/css/dark.css"
+											localStorage.setItem("theme","dark")
+										}
+									}
+									function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
+}
+
+								</script>
+								<li class="nav-item me-2 me-xl-0">
+									<a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);" onclick="themic()" data-bs-original-title="" title="">
+									<i class="bx bx-sm bx-sun"></i>
+									</a>
+								</li>
+								<li class="nav-item navbar-dropdown dropdown-user dropdown">
+									<a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+										<div class="avatar avatar-online">
+											<img id="dp" src="assets/img/icons/1.png" alt class="w-px-60 h-auto rounded-circle" />
+										</div>
+									</a>
+									<ul class="dropdown-menu dropdown-menu-end">
+										<li>
+											<a class="dropdown-item" href="#">
+												<div class="d-flex">
+													<div class="flex-shrink-0 me-3">
+														<div class="avatar avatar-online">
+															<img id="dp2"src="assets/img/icons/1.png" alt class="w-px-40 h-auto rounded-circle" />
+														</div>
+													</div>
+													<div class="flex-grow-1">
+														<span id="name2" class="fw-semibold d-block">Loading..</span>
+														<small class="text-muted">Admin</small>
+													</div>
+												</div>
+											</a>
+										</li>
+										<li>
+											<div class="dropdown-divider"></div>
+										</li>
+										<li>
+											<a class="dropdown-item" href="edit-profile">
+											<i class="bx bxs-user me-2"></i>
+											<span class="align-middle">Edit Profile</span>
+											</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="account-settings">
+											<i class="bx bxs-cog me-2"></i>
+											<span class="align-middle">Account Settings</span>
+											</a>
+										</li>
+										<li>
+											<div class="dropdown-divider"></div>
+										</li>
+										<li>
+											<a class="dropdown-item" id="logout" style="cursor: pointer;">
+												<i class="bx bx-power-off me-2"></i>
+												<script>
+													document.getElementById("logout").onclick=function(){
+														firebase.auth().signOut()
+													  st.auth().signOut()
+													  location.replace("/");
+													};
+												</script>
+												<span class="align-middle">Log Out</span>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<!--/ User -->
+							</ul>
+						</div>
+					</nav>
+					<!-- / Navbar -->
+					<!-- Content wrapper -->
+					<div class="content-wrapper">
+							<!-- Content -->
+							<div class="container-xxl flex-grow-1 container-p-y">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="card mb-4">
+											<h5 class="card-header">Create MCQ Exam</h5>
+											<!-- Exam Data -->
+											<hr class="my-0">
+											<div class="card-body">
+												<form id="formAccountSettings" method="POST" onsubmit="return false">
+													<div class="row">
+														<div class="mb-3 col-md-6">
+															<label class="form-label">Exam Name</label>
+															<input type="text" class="form-control" id="exam-name" placeholder="Main Exam 01">
+														  </div>
+														<div class="mb-3 col-md-6">
+															<label class="form-label">Select Class</label>
+															<select class="select2 form-select" id="class-select">
+															
+															</select>
+														</div>
+														<div class="mb-3 col-md-6">
+															<label class="form-label">Start Time</label>
+															<input type="datetime-local" class="form-control" id="start-time">
+														</div>
+														<div class="mb-3 col-md-6">
+															<label class="form-label">End Time</label>
+															<input type="datetime-local" class="form-control" id="end-time">
+														</div>
+														<div class="mb-3 col-md-6">
+															<label class="form-label">Exam Duration (Minutes)</label>
+															<input type="number" class="form-control" id="exam-duration">
+														</div>
+														<div class="mb-3 col-md-6">
+															<label class="form-label">Exam Description</label>
+															<input type="text" id="exam-des" class="form-control" placeholder="Give an Introduction for the Exam">
+														</div>
+														<div class="mb-3 col-md-6">
+															<label class="form-label">Answers per Question</label>
+															<select name="" class="form-control" id="apq">
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4" >4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+															</select>
+															<script>
+																document.getElementById('apq').value = "4"
+															</script>
+														</div>
+														<div class="mb-3 col-md-6">
+															<label class="form-label" id="pdfer">Upload PDF Paper</label>
+															<input type="file" class="form-control" onchange="fsave()" accept="application/pdf" id="file-upload">
+															<style>
+																.w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#4CAF50!important}
+															</style>
+														</div>
+													</div>
+												</form>
+											</div>
+											<!-- /Exam Data -->
+										</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-12">
+										<div class="card">
+										  <h5 class="card-header">Answers Sheet</h5>
+										  <div class="card-body">
+											<form class="form-repeater" id="mcqan">
+											  <div data-repeater-list="group-a" >
+												<div data-repeater-item="">
+												  <div class="row">
+													<div class="col-md abcd" style="display: none;">
+														<label class="fw-semibold d-block qesno">Question 01</label>
+														<div class="form-check form-check-inline mt-3  mas1">
+														  <input class="form-check-input chandi" type="radio" name="inlineRadioOptions" value="1" checked>
+														  <label class="form-check-label" for="inlineRadio1">Answer 01</label>
+														</div>
+														<div class="form-check form-check-inline  mas2">
+														  <input class="form-check-input" type="radio" name="inlineRadioOptions" value="2">
+														  <label class="form-check-label " for="inlineRadio2 ">Answer 02</label>
+														</div>
+														<div class="form-check form-check-inline mt-3 mas3">
+														  <input class="form-check-input" type="radio" name="inlineRadioOptions" value="3">
+														  <label class="form-check-label " for="inlineRadio1 ">Answer 03</label>
+														</div>
+														<div class="form-check form-check-inline mas4">
+														  <input class="form-check-input" type="radio" name="inlineRadioOptions" value="4">
+														  <label class="form-check-label " for="inlineRadio2 ">Answer 04</label>
+														</div>
+														<div class="form-check form-check-inline mas5">
+															<input class="form-check-input" type="radio" name="inlineRadioOptions" value="5">
+															<label class="form-check-label " for="inlineRadio2">Answer 05</label>
+														  </div>
+														  <div class="form-check form-check-inline mas6">
+															<input class="form-check-input" type="radio" name="inlineRadioOptions" value="6">
+															<label class="form-check-label " for="inlineRadio2">Answer 06</label>
+														  </div>
+														  <div class="form-check form-check-inline mas7">
+															<input class="form-check-input" type="radio" name="inlineRadioOptions" value="7">
+															<label class="form-check-label " for="inlineRadio2">Answer 07</label>
+														  </div>
+														<div class="form-check form-check-inline">
+															
+															<button type="button" class="btn btn-icon btn-outline-danger" data-repeater-delete="">
+																<span class="tf-icons bx bx-x"></span>
+															  </button>
+														</div>
+													  </div>
+												  </div>
+												  <hr>
+												</div>
+											  </div>
+											  <div class="mb-0">
+												<script>
+												
+													arr = document.getElementsByClassName('abcd')
+													function onum(){
+														function mmm(){
+															document.getElementsByClassName('chandi')[arr.length-1].checked = true
+														}
+														setTimeout(mmm,100)
+													for (let i = 0; i < arr.length; i++) {
+													
+														const e = arr[i];
+														e.style.display = 'block'
+														document.getElementsByClassName('qesno')[i].innerText =  "Question "+(parseInt(i)+1)
+														
+													}
+											
+														
+													}
+													function onim(){
+													arr = document.getElementsByClassName('abcd')
+
+														for (let i = 0; i < arr.length; i++) {
+													
+													const e = arr[i];
+													e.style.display = 'block'
+													document.getElementsByClassName('qesno')[i].innerText =  "Question "+(parseInt(i)+1)
+												}
+
+											var lim = 	document.getElementById('apq').value
+											
+										for (let z = lim; z <= 7; z++) {
+										
+											array = document.getElementsByClassName('mas'+z)
+											for (let i = 0; i < array.length; i++) {
+												const e = array[i];
+												e.style.display = 'none'
+											}
+											
+										}
+										for (let z = 0; z <= lim; z++) {
+										
+										array = document.getElementsByClassName('mas'+z)
+										for (let i = 0; i < array.length; i++) {
+											const e = array[i];
+											e.style.display = ''
+										}
+										
+									}
+											
+													}
+		setInterval(onim,600)
+													</script>
+												<button onclick="onum()" id="mybtnz" class="btn btn-sm btn-primary" data-repeater-create>
+													
+												  <i class="bx bx-plus"></i>
+												  <span class="align-middle">Add New Question</span>
+												</button>
+												<button id="botn" style="display:none ;" class="btn btn-sm btn-primary" data-repeater-create></button>
+											
+											  </div>
+											</form>
+										  </div>
+										</div>
+									  </div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="card mb-4">
+											<div class="card-body">
+												<center>
+													<button type="button" class="btn btn-primary" id="publish-exam">
+														Save
+													</button>
+													&nbsp;
+													<button type="button" class="btn btn-danger" id="cancle-exam">
+														Cancel
+													</button>
+												</center>
+											</div>
+											<!-- /Exam Data -->
+										</div>
+									</div>
+								</div>
+							</div>
+						<!-- / Content -->
+						<!-- Footer -->
+						<footer class="content-footer footer bg-footer-theme">
+							<div class="container-fluid d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+								<div style="color: #697a8d;" class="change">
+									<b>&copy; Copyright 
+									<script>
+									document.write(new Date().getFullYear());
+									</script> | Aduruthuma Learning Management System</b>
+								</div>
+							</div>
+						</footer>
+						<!-- / Footer -->
+						<div class="content-backdrop fade"></div>
+					</div>
+					<!-- Content wrapper -->
+				</div>
+				<!-- / Layout page -->
+			</div>
+			<!-- Overlay -->
+			<div class="layout-overlay layout-menu-toggle"></div>
+		</div>
+		<!-- / Layout wrapper -->
+		<!-- Core JS -->
+		<!-- build:js assets/vendor/js/core.js -->
+		<script src="assets/vendor/libs/popper/popper.js"></script>
+		<script src="assets/vendor/js/bootstrap.js"></script>
+		<script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+		<script src="assets/vendor/js/menu.js"></script>
+		<script src="assets/js/jquery-repeater.js"></script>
+		<script src="assets/js/forms-extras.js"></script>
+		<script src="js/exams.js"></script>
+		<!-- endbuild -->
+		<!-- Vendors JS -->
+		<!-- Main JS -->
+		<script src="assets/js/main.js"></script>
+		<!-- Page JS -->
+		<!-- Place this tag in your head or just before your close body tag. -->
+		<script async defer src="https://buttons.github.io/buttons.js"></script>
+	</body>
+</html>

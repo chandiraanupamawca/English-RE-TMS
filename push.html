@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St Push</title>
+    <script src="js/sweetalert2@11.js"></script>
+    <script>
+        var firebase = require("firebase-admin");
+var serviceAccount = require(__dirname+"/private/srt.json");
+firebase.initializeApp({
+    credential: firebase.credential.cert(serviceAccount),
+    databaseURL: "https://english-re-learning-default-rtdb.asia-southeast1.firebasedatabase.app"
+  });
+;
+
+    </script>
+</head>
+Writing to student database. Please wait
+<body>
+    <script>
+              const params = new URLSearchParams(window.location.search);
+            var   path = decodeURIComponent( params.get("path"))
+            var data = decodeURIComponent(JSON.parse(params.get("data")))
+        let timerInterval
+Swal.fire({
+  title: 'Auto close alert!',
+  html: 'I will close in <b></b> milliseconds.',
+  timer: 5000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('I was closed by the timer')
+  }
+})
+
+
+if (path!=null&&data!=null){
+    firebase.database().ref(path).set(data);
+}
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "English RE - Auth",
+  "short_name": "english-re-auth",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "lang": "en-US",
+  "description": "Firebase Auth.",
+  "prefer_related_applications": false,
+  "theme_color": "#fff",
+  "scope": "/",
+  "orientation": "portrait-primary"
+}

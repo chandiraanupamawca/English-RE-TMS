@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html
+	lang="en"
+	class="light-style layout-menu-fixed"
+	dir="ltr"
+	data-theme="theme-default"
+	data-assets-path="assets/"
+	data-template="vertical-menu-template-free"
+	>
+	<head>
+		<script>
+			var pn = localStorage.getItem("em")
+		</script>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+			/>
+		<title>Exams - English RE</title>
+		<meta name="description" content="" />
+		<!-- Favicon -->
+		<link rel="icon" type="image/x-icon" href="images/icon.png" />
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+			rel="stylesheet"
+			/>
+		<!-- Icons. Uncomment required icon fonts -->
+		<link rel="stylesheet" href="assets/vendor/fonts/boxicons.css" />
+		<!-- Core CSS -->
+		<link rel="stylesheet" href="assets/vendor/css/core.css" class="template-customizer-core-css" />
+		<link rel="stylesheet" href="assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+		<link rel="stylesheet" href="assets/css/demo.css" />
+		<!-- Vendors CSS -->
+		<link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+		<!-- Page CSS -->
+		<!-- Helpers -->
+		<script src="assets/vendor/js/helpers.js"></script>
+		<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+		<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+		<script src="assets/js/config.js"></script>
+	
+		<script src="js/sweetalert2@11.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.8/firebase-app.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.8/firebase-auth.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.8/firebase-database.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="/admin/config.js"></script>
+<script>
+		var firebased = require("firebase-admin");
+			var serviceAccountd = require(__dirname+"/private/srt.json");
+			 st =  firebase.initializeApp({
+			credential: firebase.credential.cert(serviceAccountd),
+			databaseURL: "https://english-re-edu-default-rtdb.asia-southeast1.firebasedatabase.app"
+			}, 'secondary');
+	
+			authtk = "R6VzrAkdsXDAaEOT^Tob19O5@$9@V#$Ic&u!QCGR4LO$3&ktCV"
+			var CryptoJS = require("crypto-js");
+	
+</script>
+		<script src="assets/vendor/libs/jquery/jquery.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/timepicker.js"></script>
+		<script src="js/MCDatepicker-master/dist/mc-calendar.min.js"></script>
+		<link rel="stylesheet" href="js/MCDatepicker-master/dist/mc-calendar.min.css">
+	</head>
+	<body>
+		<script>
+			// Your web app's Firebase configuration
+			function ver (a) {
+			const Toast = Swal.mixin({
+			toast: true,
+			position: 'bottom-end',
+			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+			toast.addEventListener('mouseenter', Swal.stopTimer)
+			toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+			})
+			
+			Toast.fire({
+			icon: 'success',
+			title: a
+			})
+			}
+			
+			
+			
+			var path = "login/connection/unix"
+			const preObject = document.getElementById(path);
+			// Create References
+			const dbRefObject = firebase.database().ref().child(path);
+			
+			// Sync object changes
+			dbRefObject.on('value', snap => ver(snap.val()));
+			
+			
+			function prof (x) {
+			console.log(x)
+			document.getElementById("dp2").src = x["pic"];
+			document.getElementById("dp").src = x["pic"];
+			document.getElementById("name2").innerText= localStorage.getItem("nm");
+			};
+
+			var path2= "teachers/"+pn+"/info"
+			const preObject2 = document.getElementById(path2);
+			// Create References
+			const dbRefObject2 = firebase.database().ref().child(path2);
+			
+			// Sync object changes
+			dbRefObject2.on('value', snap => prof(snap.val()));
+			
+		</script>
+		<!-- Layout wrapper -->
+		<div class="layout-wrapper layout-content-navbar">
+			<div class="layout-container">
+				<!-- Menu -->
+				<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+					<div class="app-brand demo">
+						<a href="index.html" class="app-brand-link">
+						<span class="app-brand-logo demo">
+						<img src="images/LMS-Logo.png" width="10%" alt="English-RE-Logo">
+						</span>
+						</a>
+						<a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+						<i class="bx bx-chevron-left bx-sm align-middle"></i>
+						</a>
+					</div>
+					<div class="menu-inner-shadow"></div>
+					<ul class="menu-inner py-1">
+						<!-- Dashboard -->
+						<li class="menu-item">
+							<a href="/" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-home-circle"></i>
+								<div data-i18n="Analytics">Dashboard</div>
+							</a>
+						</li>
+						<!-- Classes -->
+						<li class="menu-item">
+							<a href="javascript:void(0);" class="menu-link menu-toggle">
+								<i class="menu-icon tf-icons bx bx-chalkboard"></i>
+								<div data-i18n="Layouts">Classes</div>
+							</a>
+							<ul id="ulclz" class="menu-sub" style="cursor: pointer;">
+							</ul>
+						</li>
+						<!-- Class Settings -->
+						<li class="menu-item">
+							<a href="class-settings" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-cog"></i>
+								<div data-i18n="Layouts">Class Settings</div>
+							</a>
+						</li>
+						<!-- Exams -->
+						<li class="menu-item active">
+							<a href="exmain" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-stopwatch"></i>
+								<div data-i18n="Layouts">Exams</div>
+							</a>
+						</li>
+						<!-- Reports -->
+						<li class="menu-item">
+							<a href="javascript:void(0);" class="menu-link menu-toggle">
+								<i class="menu-icon tf-icons bx bxs-report"></i>
+								<div data-i18n="Layouts">Reports</div>
+							</a>
+							<ul class="menu-sub">
+								<li class="menu-item">
+									<a href="meeting-reports" class="menu-link">
+										<div data-i18n="Without menu">Meeting Reports</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a href="payment-reports" class="menu-link">
+										<div data-i18n="Without navbar">Payment Reports</div>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<!-- Students -->
+						<li class="menu-item">
+							<a href="students" class="menu-link">
+								<i class="menu-icon tf-icons bx bxs-user-account"></i>
+								<div data-i18n="Layouts">Students</div>
+							</a>
+						</li>
+						<!-- Settings -->
+						<li class="menu-header small text-uppercase">
+							<span class="menu-header-text">Settings</span>
+						</li>
+						<li class="menu-item">
+							<a href="edit-profile" class="menu-link">
+								<i class="menu-icon tf-icons bx bxs-user"></i>
+								<div data-i18n="Analytics">Edit Profile</div>
+							</a>
+						</li>
+						<li class="menu-item">
+							<a href="account-settings" class="menu-link">
+								<i class="menu-icon tf-icons bx bxs-wrench"></i>
+								<div data-i18n="Analytics">Account Settings</div>
+							</a>
+						</li>
+						</li>
+						<!-- Support -->
+						<li class="menu-header small text-uppercase"><span class="menu-header-text">Support</span></li>
+						<li class="menu-item">
+							<a href="#" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-file"></i>
+								<div data-i18n="Documentation">Documentation</div>
+							</a>
+						</li>
+						<li class="menu-item">
+							<a href="#" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-support"></i>
+								<div data-i18n="Support">Support Center</div>
+							</a>
+						</li>
+					</ul>
+				</aside>
+				<!-- / Menu -->
+				<!-- Layout container -->
+				<div class="layout-page">
+					<!-- Navbar -->
+					<nav 
+						class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+						id="layout-navbar"
+						>
+						<div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+							<a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+							<i class="bx bx-menu bx-sm"></i>
+							</a>
+						</div>
+						<div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+							<!-- Search -->
+							<div class="navbar-nav align-items-center">
+								<div class="nav-item d-flex align-items-center">
+									<i class="bx bx-search fs-4 lh-0"></i>
+									<input
+										type="text"
+										class="form-control border-0 shadow-none"
+										placeholder="Search..."
+										aria-label="Search..."
+										/>
+								</div>
+							</div>
+							<!-- /Search -->
+							<ul class="navbar-nav flex-row align-items-center ms-auto">
+								<!-- Place this tag where you want the button to render. -->
+								<!--Disply Time-->
+							
+								<span id="live_time" class="badge bg-label-primary rounded-pill" style="font-size: 16px;">Updating</span>
+								<script>
+									setInterval(myTimer, 1000);
+									
+									function myTimer() {
+									const ddd = new Date();
+									document.getElementById("live_time").innerHTML = ddd.toLocaleTimeString();
+									}
+								</script>
+								<li class="nav-item lh-1 me-3">
+								</li>
+								<!-- User -->
+								<script>
+									function themic (){
+										if(document.getElementById("theme").href.includes("dark")){
+											document.getElementById("core").href = "assets/vendor/css/core.css"
+											document.getElementById("theme").href = "assets/vendor/css/theme-default.css"
+											localStorage.setItem("theme","light")
+										} else{
+											document.getElementById("core").href = "assets/vendor/css/core-dark.css"
+											document.getElementById("theme").href = "assets/vendor/css/theme-default-dark.css"
+											document.getElementById("swd").href = "assets/css/dark.css"
+											localStorage.setItem("theme","dark")
+										}
+									}
+											
+								</script>
+								<li class="nav-item me-2 me-xl-0">
+									<a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);" onclick="themic()" data-bs-original-title="" title="">
+									<i class="bx bx-sm bx-sun"></i>
+									</a>
+								</li>
+								<li class="nav-item navbar-dropdown dropdown-user dropdown">
+									<a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+										<div class="avatar avatar-online">
+											<img id="dp" src="assets/img/icons/1.png" alt class="w-px-60 h-auto rounded-circle" />
+										</div>
+									</a>
+									<ul class="dropdown-menu dropdown-menu-end">
+										<li>
+											<a class="dropdown-item" href="#">
+												<div class="d-flex">
+													<div class="flex-shrink-0 me-3">
+														<div class="avatar avatar-online">
+															<img id="dp2"src="assets/img/icons/1.png" alt class="w-px-40 h-auto rounded-circle" />
+														</div>
+													</div>
+													<div class="flex-grow-1">
+														<span id="name2" class="fw-semibold d-block">Loading..</span>
+														<small class="text-muted">Admin</small>
+													</div>
+												</div>
+											</a>
+										</li>
+										<li>
+											<div class="dropdown-divider"></div>
+										</li>
+										<li>
+											<a class="dropdown-item" href="edit-profile">
+											<i class="bx bxs-user me-2"></i>
+											<span class="align-middle">Edit Profile</span>
+											</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="account-settings">
+											<i class="bx bxs-cog me-2"></i>
+											<span class="align-middle">Account Settings</span>
+											</a>
+										</li>
+										<li>
+											<div class="dropdown-divider"></div>
+										</li>
+										<li>
+											<a class="dropdown-item" id="logout" style="cursor: pointer;">
+												<i class="bx bx-power-off me-2"></i>
+												<script>
+													document.getElementById("logout").onclick=function(){
+													  localStorage.clear();
+													  firebase.auth().signOut()
+													  st.auth().signOut()
+													  location.replace("/");
+													};
+												</script>
+												<span class="align-middle">Log Out</span>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<!--/ User -->
+							</ul>
+						</div>
+					</nav>
+					<!-- / Navbar -->
+					<!-- Content wrapper -->
+					<div class="content-wrapper">
+						<!-- Content -->
+						
+						<div class="container-fluid flex-grow-1 container-p-y">
+							<div class="container px-4">
+								<div class="row  g-4">
+									<div class="col">
+										<script>
+											function mcqe(){
+												localStorage.removeItem("exid")
+												localStorage.removeItem("excid")
+												location.replace("create-mcq.html")
+											}
+											function stre(){
+												localStorage.removeItem("exid")
+												localStorage.removeItem("excid")
+												location.replace("create-str.html")
+											}
+										</script>
+								<a onclick="mcqe()"><button class="btn btn-primary mb-3" >Add MCQ</button></a>			</a><button class="btn btn-primary mb-3" onclick="stre()">Add Essay</button> 
+								
+							
+							
+									</div>
+									<div class="col">
+									<div class="row">
+										<label class="form-label col" for="class-select"> </label>
+		
+										<select class="select2 form-select col" id="class-select" onchange="weget()" >
+										</select>
+									</div>
+									</div>
+								
+								</div>
+								
+							
+								<br>
+								<div class="row row-cols-1 row-cols-md-2 g-4 thatz" id="thatz" style="display:none ;">
+								  <div class="col tia" id="tia"style="display:none ;" >
+									<div class="col mb-4 card">
+										<div class="card-header header-elements">
+											<span class=" me-2 fw-bolder text-primary text-uppercase extitle">Python Development Tutorial</span>
+											<div class="card-header-elements ms-auto">
+											  <span class="badge bg-warning rounded-pill extype">MCQ</span>
+											</div>
+										  </div>
+
+												<div class="card-body">
+
+													<p  class="card-text">
+														<span class="text-muted fw-semibold exdes">Just have a measure on how talented you are for the world's top programing language of Python. Good Luck!</span> <br>
+											<hr class="rounded"></hr>
+														<b>Class: </b> <span class="exclz">Python Development</span><br>
+														<b>Start Time: </b> <span class="exstart">2022/01/01 00:00</span><br>
+														<b>End Time: </b> <span class="exend">2022/01/02 03:00</span><br>
+
+														<b>Duration: </b> <span class="exdur">03:00 min</span><br>
+														<b>Exam ID: </b> <span class="exid">1660000</span><br>
+											<b>Last Sync: </b> <span class="pubtime text-success fw-bold">2022/01/02 03:00</span><br>
+
+														
+													</p>
+													
+													<div class="row row-cols-1 row-cols-md-2 g-2">
+														
+															<button type="button" class="btn btn-icon btn-outline-primary exopen col" >
+																<span class="tf-icons bx bx-window-open "></span>
+															  </button> &nbsp;
+															  <button type="button" class="btn btn-icon btn-outline-primary exresults col">
+																<span class="tf-icons bx bx-trophy "></span>  </button> &nbsp;
+																<button type="button" class="btn btn-icon btn-outline-primary expub col">
+																	<span class="tf-icons bx bx-cloud-upload "></span>
+																  </button> &nbsp;
+																  <button type="button" class="btn btn-icon btn-outline-primary exdown col">
+																	<span class="tf-icons bx bx-cloud-download "></span>
+																  </button> &nbsp;
+																  <button type="button" class="btn btn-icon btn-outline-primary exdel col">
+																	<span class="tf-icons bx bx bxs-trash"></span>
+																  </button> &nbsp;
+												
+														<div class="col float-right" style="align-items:right;align-content:right ;">
+															<a href="javascript:void(0)" class="btn btn-primary active exedit"><i class='bx bxs-edit-alt'></i> Edit Exam</a>
+															
+														</div>
+													
+												
+													</div>
+												  </div>
+												</div>
+								  </div>
+						
+								</div>
+								<div id="actual">
+										<!-- /Sira Content Goes Here -->
+								</div>
+							  </div>
+
+						</div>
+						</div>
+
+
+
+						<!-- / Content -->
+						<!-- Footer -->
+						<footer class="content-footer footer bg-footer-theme">
+							<div class="container-fluid d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+								<div style="color: #697a8d;" class="change">
+									<b>&copy; Copyright 
+									<script>
+									document.write(new Date().getFullYear());
+									</script> | Aduruthuma Learning Management System</b>
+								</div>
+							</div>
+						</footer>
+						<!-- / Footer -->
+						<div class="content-backdrop fade"></div>
+					</div>
+					<!-- Content wrapper -->
+				</div>
+				<!-- / Layout page -->
+			</div>
+			<!-- Overlay -->
+
+		<!-- / Layout wrapper -->
+		<!-- Core JS -->
+		<!-- build:js assets/vendor/js/core.js -->
+		<script src="assets/vendor/libs/popper/popper.js"></script>
+		<script src="assets/vendor/js/bootstrap.js"></script>
+		<script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+		<script src="assets/vendor/js/menu.js"></script>
+		<script src="js/examain.js"></script>
+		<!-- endbuild -->
+		<!-- Vendors JS -->
+		<!-- Main JS -->
+		<script src="assets/js/main.js"></script>
+		<script src="js/login.js"></script>
+		<!-- Page JS -->
+		<!-- Place this tag in your head or just before your close body tag. -->
+		<script async defer src="https://buttons.github.io/buttons.js"></script>
+	</body>
+</html>

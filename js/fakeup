@@ -1,0 +1,72 @@
+
+const { uploads } = require('youtube-videos-uploader'); //vanilla javascript
+
+// recoveryemail is optional, only required to bypass login with recovery email if prompted for confirmation
+//OBFUSCATED
+
+// minimum required options to upload video
+
+const onVideoUploadSuccess = (videoUrl) => {
+    console.log(videoUrl)
+    st.database().ref(   "files/" + cid +"/file"+ moment().format('x')).set({
+        topic :$$('matname').value,
+        size:$$('file-upload').files[0].size/1000000,
+        type:$$('material-type').value,
+        from:$$('available-from').value,
+        till:$$('available-till').value,
+        url:CryptoJS.AES.encrypt(videoUrl,authtk).toString(),
+        fname:$$('file-upload').files[0].name,
+        safe:$$('media-player').value
+    }).then((result) => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title:  'Hosted on English RE!',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            location.reload()
+          })
+    })
+   
+    // ..do something..
+}
+// Extra options like tags, thumbnail, language, playlist etc
+
+
+// Returns uploaded video links in array
+lod = false
+// OR
+// This package uses Puppeteer, you can also pass Puppeteer launch configuration
+function uploader (){
+const video1 = { path: selfilepath, title: $$('matname').value, description: 'English RE Media', publishType:"unlisted",onSuccess:onVideoUploadSuccess, skipProcessingWait: true, onProgress: (progress) => { 
+    console.log('progress', progress) 
+  
+if(lod) {
+    document.getElementById("myBar").style.width = progress['progress'] + "%"
+    document.getElementById("myBar").innerText = progress['progress']+"%";
+    lod = true
+} else{
+    Swal.fire({
+        title: '<strong>Video is being uploaded to English RE</strong>',
+        icon: 'info',
+        html:'<div id="myProgress">' + '<center><small class="text-primary fw-semibold"><i class="bx bx-loader-circle"></i> Please be patient!</small></center><br>'+
+       ' <div class="w3-green" id="myBar">10%</div>' +'</div>' ,
+       showCancelButton: false,
+       showCloseButton: false,
+       allowOutsideClick: false,
+  allowEscapeKey:false,
+       showConfirmButton: false,
+       allowOutsideClick: false
+      })
+      lod = true
+    
+}
+} }
+upload (credentials, [video1], {
+    "headless": true,
+    "ignoreHTTPSErrors": true,
+    "executablePath": __dirname +'\\node_modules\\youtube-videos-uploader\\node_modules\\puppeteer\\.local-chromium\\win64-1002410\\chrome-win\\chrome.exe'
+}).then(console.log)}
+// Refer Puppeteer documentation for more launch configurations like proxy etc
+// https://pptr.dev/#?product=Puppeteer&version=main&show=api-puppeteerlaunchoptions
