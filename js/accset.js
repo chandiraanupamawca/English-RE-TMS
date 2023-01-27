@@ -1,6 +1,6 @@
 var $$ = function( id ) { return document.getElementById( id ); };
-//baseurl = "https://zoom.aduruthuma.ml"
-baseurl = "https://zoom.us/"
+baseurl = "https://zoom.aduruthuma.ml"
+//baseurl = "https://zoom.us/"
 
 
 function authinfo(s){
