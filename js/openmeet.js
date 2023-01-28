@@ -66,7 +66,8 @@ function newm(ac) {
 
 				})
 				telenot("<b>" + "New Meeting " + localStorage.getItem("ctpic") + " is now live on English RE" + "</b>" + "\n" + "Topic: " + crtd["topic"] + "\nClass ID: " + cid + "\n" + "Meeting ID: " + crtd["id"] + "\n" + "Start URL: " + crtd["start_url"] + "\n" + "Timestamp: " + moment().format("YYYY-MM-DD hh:mm a"))
-				st.database().ref(   "live/" + classname ).update( {
+
+				st.database().ref(   "live/" + cid ).update( {
 				  id: crtd["id"],
 				  sts: "Live"
 				})
