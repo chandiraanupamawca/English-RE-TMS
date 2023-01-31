@@ -26,7 +26,7 @@ Swal.fire({
 })
 console.log(that)
 var xhr2 = new XMLHttpRequest();
-url = "http://server-09.lankaedu.tk/approve";
+url = "https://server-09.lankaedu.tk/approve";
 //url = "http://localhost:5000/approve";
 xhr2.open("POST", url, true);
 xhr2.setRequestHeader("Content-Type", "application/json");
