@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  class="light-style customizer-hide"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="assets/"
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>Restricted Login - English RE</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon/icon.png" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      @font-face {
+              font-family: '1_un_bindumathi';
+              src: url('scss/un-bindumathi.ttf');
+          }
+          .font_class_1_un_bindumathi {
+              font-family: '1_un_bindumathi', Ubuntu-R, sans-serif !important;
+          }
+    </style>
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="assets/css/demo.css" />
+<script src="js/sweetalert2@11.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.8/firebase-app.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.8/firebase-auth.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.8/firebase-database.min.js"></script>
+<script src="js/restricted-config.js"></script>
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="assets/vendor/css/pages/page-auth.css" />
+    <!-- Helpers -->
+    <script src="assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="assets/js/config.js"></script>
+  </head>
+
+  <body>
+    <!-- Content -->
+<script>
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().useDeviceLanguage();
+  provider.setCustomParameters({
+  'allow_signup': 'false'
+});
+// To apply the default browser preference instead of explicitly setting it.
+// firebase.auth().useDeviceLanguage();
+function opengo(){
+  firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+
+
+    /** @type {firebase.auth.OAuthCredential} */
+
+    
+    var credential = result.credential;
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+    const { value: password } =  Swal.fire({
+  title: 'Enter your password',
+  input: 'password',
+  inputLabel: 'Enter the Account Password',
+  inputPlaceholder: 'Enter your password',
+  inputAttributes: {
+    maxlength: 10,
+    autocapitalize: 'off',
+    autocorrect: 'off'
+  }
+}).then((password)=>
+{
+  if (password.value) {
+
+
+  function log (dt) {
+    console.log(dt)
+    console.log(password.value)
+    if(dt==password.value){
+      console.log("Authenticated!")
+    } else {
+      Swal.fire(
+  'Failed',
+  'Bad input password',
+  'warning'
+)
+    }
+  }
+
+  let timerInterval
+Swal.fire({
+  title:"Verifying it's real you!",
+  html: 'Authenticating in <b></b> milliseconds.',
+  timer: 6000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('I was closed by the timer')
+  }
+})
+
+var xhr = new XMLHttpRequest();
+url = "https://server-09.lankaedu.tk/auth";
+xhr.open("POST", url, true);
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4 && xhr.status === 404) {
+    Swal.fire({
+  icon: 'warning',
+  title: 'Invalid User',
+  showConfirmButton: false,
+  timer: 1500
+})
+  }
+  if (xhr.readyState === 4 && xhr.status === 301) {
+    Swal.fire({
+  icon: 'warning',
+  title: 'Incorrect Password',
+  showConfirmButton: false,
+  timer: 1500
+})
+  }
+    if (xhr.readyState === 4 && xhr.status === 200) {
+console.log(xhr.responseText)
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+Swal.fire({
+  icon: 'success',
+  title: 'Signed in',
+  //html: '<b>Please Re Open this page to Continue</b>',
+  html: '<b>You are being redirected to Bank Payments page</b>',
+  showConfirmButton: false,
+  timer: 1500
+}).then((res)=>{
+  location.replace('bank-payments')
+})
+setCookie("openjs",btoa(xhr.responseText),3)
+    }}
+  var  data = JSON.stringify({email:user.email,pass:password.value})
+  encrypted = CryptoJS.AES.encrypt(data, 'fuck').toString()
+  var pushload = JSON.stringify({auth:encrypted})
+xhr.send(pushload)
+
+  
+
+}
+}
+)
+
+
+
+
+
+
+
+
+
+
+
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+}
+</script>
+    <div class="container-xxl">
+      <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+          <!-- Register -->
+          <div class="card">
+            <div class="card-body">
+              <!-- Logo -->
+              <div class="app-brand justify-content-center">
+                <a href="/" class="app-brand-link gap-2">
+                  <span class="app-brand-logo demo">
+                    <img src="images/LMS-Logo.png" alt="Aduruthuma LMS Logo" width="220px">
+                  </span>
+                </a>
+              </div>
+              <!-- /Logo -->
+              <div id="popp">
+              <h4 class="mb-2"><b class="text-primary">English RE</b> | Restricted Area Login</h4>
+              <h5 class="mb-4">Please Login to Continue</h5>
+           <center>   <button class="btn btn-dark"  onclick="opengo()"> <span style="font-size:15px ;"><i class='bx bxl-google ' ></i></span> Sign with Google</button></center>
+         
+           <br>
+           <br>
+          
+
+              <p class="text-center">
+                <b>Support Hotline: 0787134053</b>
+              </p>
+              <p class="text-center">
+                &copy; Copyright 
+                    <script>
+                    document.write(new Date().getFullYear());
+                    </script>
+                | Aduruthuma Learning Management System
+              </p>
+            </div>
+           </div>
+          </div>
+          <!-- /Register -->
+        </div>
+      </div>
+    </div>
+
+    <!-- / Content -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="assets/vendor/libs/popper/popper.js"></script>
+    <script src="assets/vendor/js/bootstrap.js"></script>
+    <script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="js/restricted-login.js"></script>
+    <script src="assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Page JS -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>

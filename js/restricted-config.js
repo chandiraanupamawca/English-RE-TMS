@@ -22,6 +22,7 @@ const firebaseConfig = {
     appId: "1:772928602894:web:f82077f2393b42d8cd4d5f"
   };
   
+  
   firebase.initializeApp(firebaseConfig);
   
   // Google OAuth Client ID, needed to support One-tap sign-up.

@@ -193,7 +193,7 @@ function registrant (regmid){
             let timerInterval
 Swal.fire({
   title: 'Registering '+$$("regname").value,
-  html: 'Cnnecting with zoom in <b></b> milliseconds.',
+  html: 'Connecting with zoom in <b></b> milliseconds.',
   timer: 10000,
   timerProgressBar: true,
   didOpen: () => {
@@ -751,7 +751,7 @@ dbRefObject75211.on('value', snap => befire(snap.val()));
 function lptp (){
   Swal.fire({
     title: 'Fetching data',
-    html: 'Cnnecting with zoom in <b></b> milliseconds.',
+    html: 'Connecting with zoom in <b></b> milliseconds.',
     timer: 10000,
     timerProgressBar: true,
     didOpen: () => {
