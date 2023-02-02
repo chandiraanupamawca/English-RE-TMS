@@ -1,6 +1,6 @@
 
 pn = localStorage.getItem("em")
-baseurl = "https://zoom.aduruthuma.ml"
+baseurl = "https://zoom.lankaedu.tk"
 function cn(){
   var xhr55 = new XMLHttpRequest();
 var url ="https://server-01.lankaedu.tk/tk";

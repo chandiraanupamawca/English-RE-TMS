@@ -1,6 +1,5 @@
 var $$ = function( id ) { return document.getElementById( id ); };
-baseurl = "https://zoom.aduruthuma.ml"
-//baseurl = "https://zoom.us/"
+baseurl = "https://zoom.lankaedu.tk"
 
 
 function authinfo(s){
