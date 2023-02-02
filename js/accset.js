@@ -47,7 +47,7 @@ var  secret = sec
         }
     bsix = btoa($$("accauthi").value+":"+secret)
     var xhr533 = new XMLHttpRequest();
-    var url2 = `baseurl`+"/oauth/token?grant_type=account_credentials&account_id="+$$("accid").value;
+    var url2 = baseurl +"/oauth/token?grant_type=account_credentials&account_id="+$$("accid").value;
     xhr533.open("POST", url2, true);
     xhr533.setRequestHeader("Content-Type", "application/json");
     
