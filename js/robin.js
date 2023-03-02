@@ -1,7 +1,7 @@
 function phb(thz){
     if($$(thz).checked){
     console.log(thz)
-  st.auth().getUserByEmail(yz["pn"]+"@englishre.tk")
+  st.auth().getUserByEmail(yz["pn"]+"@englishre.xyz")
   .then((userRecord) => {
     // See the UserRecord reference doc for the contents of userRecord.
     uid = userRecord.uid
@@ -43,7 +43,7 @@ uid:uid
 
 } else {
     console.log(thz + "denroll")
-    st.auth().getUserByEmail(yz["pn"]+"@englishre.tk")
+    st.auth().getUserByEmail(yz["pn"]+"@englishre.xyz")
     .then((userRecord) => {
       // See the UserRecord reference doc for the contents of userRecord.
       uid = userRecord.uid

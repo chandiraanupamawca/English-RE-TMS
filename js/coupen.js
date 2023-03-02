@@ -18,7 +18,7 @@ function cleara(){
       }).then((result) => {
         if (result.isConfirmed) {
             var xhr2 = new XMLHttpRequest();
-            url = "https://server-09.lankaedu.tk/clearcc";
+            url = "https://server-09.englishre.xyz/clearcc";
            // url = "http://localhost:5000/clearcc";
             xhr2.open("POST", url, true);
             xhr2.setRequestHeader("Content-Type", "application/json");
@@ -46,7 +46,7 @@ function cleara(){
 function veri(){
     vb = getcid()
     var xhr2 = new XMLHttpRequest();
-url = "https://server-09.lankaedu.tk/ccpen";
+url = "https://server-09.englishre.xyz/ccpen";
  //   url = "http://localhost:5000/ccpen";
     xhr2.open("POST", url, true);
     xhr2.setRequestHeader("Content-Type", "application/json");

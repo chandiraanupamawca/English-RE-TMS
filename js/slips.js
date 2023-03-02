@@ -26,7 +26,7 @@ Swal.fire({
 })
 console.log(that)
 var xhr2 = new XMLHttpRequest();
-url = "https://server-09.lankaedu.tk/approve";
+url = "https://server-09.englishre.xyz/approve";
 //url = "http://localhost:5000/approve";
 xhr2.open("POST", url, true);
 xhr2.setRequestHeader("Content-Type", "application/json");
@@ -73,7 +73,7 @@ Swal.fire({
 })
 console.log(that)
 var xhr2 = new XMLHttpRequest();
-url = "https://server-09.lankaedu.tk/reject";
+url = "https://server-09.englishre.xyz/reject";
 xhr2.open("POST", url, true);
 xhr2.setRequestHeader("Content-Type", "application/json");
 xhr2.onreadystatechange = function () {

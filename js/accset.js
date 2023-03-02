@@ -1,5 +1,5 @@
 var $$ = function( id ) { return document.getElementById( id ); };
-baseurl = "https://zoom.lankaedu.tk"
+baseurl = "https://zoom.englishre.xyz"
 
 
 function authinfo(s){

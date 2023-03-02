@@ -1,9 +1,9 @@
 
 pn = localStorage.getItem("em")
-baseurl = "https://zoom.lankaedu.tk"
+baseurl = "https://zoom.englishre.xyz"
 function cn(){
   var xhr55 = new XMLHttpRequest();
-var url ="https://server-01.lankaedu.tk/tk";
+var url ="https://server-01.englishre.xyz/tk";
 xhr55.open("POST", url, true);
 xhr55.setRequestHeader("Content-Type", "application/json");
 xhr55.onreadystatechange = function () {

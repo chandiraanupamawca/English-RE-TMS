@@ -280,7 +280,7 @@ $$("coppy").onclick=function(){
     var data = JSON.stringify({
       "first_name": "RE"+studenti,
       "last_name": studentn,
-      "email": studenti+"@englishre.tk",
+      "email": studenti+"@englishre.xyz",
       "state": "Sri Lanka",
       "comments": "FREE CARD",
       "job_title": "Student",

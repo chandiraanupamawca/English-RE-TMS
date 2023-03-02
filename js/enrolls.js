@@ -22,7 +22,7 @@ function manen (result,xz,password){
                     clearInterval(timerInterval)
                   }
                 })
-            st.auth().getUserByEmail(xz["pn"]+"@englishre.tk")
+            st.auth().getUserByEmail(xz["pn"]+"@englishre.xyz")
             .then((userRecord) => {
               // See the UserRecord reference doc for the contents of userRecord.
               uid = userRecord.uid
