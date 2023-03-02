@@ -193,7 +193,7 @@ function dt (){
     
 
     document.getElementById("tt_wrapper").style.width="96%"
-    $$("tt_filter").style.display = 'none'
+    $$("tt_filter").style.display = 'block'
     tt_length.innerHTML = '<label class="form-control">Show Entries</label><select name="tt_length" aria-controls="tt" class="form-select"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select><br>'
     
 }
