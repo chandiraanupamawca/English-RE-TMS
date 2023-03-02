@@ -44,7 +44,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.8/firebase-app.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.8/firebase-auth.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.8/firebase-database.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="/admin/config.js"></script>
+		<!-- <script src="/admin/config.js"></script> -->
 		<script src="js/uploader.js"></script>
 		<script>
 						const firebaseConfig = {
@@ -56,7 +56,7 @@
   messagingSenderId: "1073532461163",
   appId: "1:1073532461163:web:c6965b2ca43cf0108e512e"
 };
-
+firebase.initializeApp(firebaseConfig);
 
 uploaderjs = uploaderjs.initializeApp(firebaseConfig, 'secondary');
 		</script>
@@ -346,7 +346,7 @@ uploaderjs = uploaderjs.initializeApp(firebaseConfig, 'secondary');
 															<input type="text" id="exam-des" class="form-control" placeholder="Give an Introduction for the Exam">
 														</div>
 														<div class="mb-3 col-md-6">
-															<label class="form-label">Upload PDF Paper</label>
+															<label class="form-label" id="pdfer">Upload PDF Paper</label>
 															<input type="file" class="form-control"  onchange="fsave()" accept="application/pdf" id="file-upload">
 														</div>
 													</div>
@@ -411,6 +411,7 @@ uploaderjs = uploaderjs.initializeApp(firebaseConfig, 'secondary');
 		<!-- Main JS -->
 		<script src="js/logged-out-redirect.js"></script>
 		<script src="js/estr.js"></script>
+		<script src="js/setclasslist.js"></script>
 		<script src="assets/js/main.js"></script>
 		<!-- Page JS -->
 		<!-- Place this tag in your head or just before your close body tag. -->

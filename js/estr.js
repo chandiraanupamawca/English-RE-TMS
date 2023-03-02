@@ -134,7 +134,7 @@ console.log("existing cid : " +  $$('class-select').value )
 
 
 
-function gotah () {
+function publishexam () {
     topic =  $$("exam-name").value
 cidx =  $$("class-select").value
 start =  $$("start-time").value
@@ -173,17 +173,18 @@ if(topic==''||cidx==''||start==''||end==''||des==''||dt==''||dur==''){
 }
 }
 if($$("publish-exam")){
-$$("publish-exam").onclick= function (){gotah()}}
+$$("publish-exam").onclick= function (){publishexam()}}
+$$("cancle-exam").onclick = function cancle_exam() { window.location.href ="exmain.html"}
 
 
-function vercel (anushka) {
-    if (anushka==null){
+function vercel (examdata) {
+    if (examdata==null){
         console.log("new str")
       
     } else {
-        console.log(anushka)
+        console.log(examdata)
 
-        var gen = anushka["gen"]
+        var gen = examdata["gen"]
         $$("exam-name").value = gen["topic"]
       $$("class-select").value  = gen["cid"]
        $$("start-time").value= gen["start"]
@@ -195,7 +196,7 @@ function vercel (anushka) {
   dt= gen["url"]
 
 
-  var ans = anushka["ans"]
+  var ans = examdata["ans"]
   console.log(ans)
   for (let i = 1; i < ans.length; i++) {
     
@@ -207,7 +208,7 @@ function vercel (anushka) {
     for (let i = 0; i < ans.length; i++) {
 
 
-        console.log("addinh ans")
+        console.log("Adding Ans")
     
         console.log(ans[i])
   $("[name='group-a["+i+"][inlineRadioOptions]']").removeAttr('checked');

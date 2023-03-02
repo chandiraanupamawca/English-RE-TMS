@@ -132,7 +132,7 @@ console.log("existing cid : " +  $$('class-select').value )
 
 
 
-function gotah () {
+function publishexam () {
     topic =  $$("exam-name").value
 apq =  $$("apq").value
 cidx =  $$("class-select").value
@@ -195,17 +195,18 @@ var nm = Object.keys(getFormData($('#mcqan')))
 }
 }
 if($$("publish-exam")){
-$$("publish-exam").onclick= function (){gotah()}}
+  $$("publish-exam").onclick= function (){publishexam()}}
+$$("cancle-exam").onclick = function cancle_exam() { window.location.href ="exmain.html"}
 
 
-function vercel (anushka) {
-    if (anushka==null){
+function vercel (examdata) {
+    if (examdata==null){
         console.log("new mcq")
       
     } else {
-        console.log(anushka)
+        console.log(examdata)
 
-        var gen = anushka["gen"]
+        var gen = examdata["gen"]
         $$("exam-name").value = gen["topic"]
         $$("apq").value= gen["apq"]
       $$("class-select").value  = gen["cid"]
@@ -218,7 +219,7 @@ function vercel (anushka) {
   dt= gen["url"]
 
 
-  var ans = anushka["ans"]
+  var ans = examdata["ans"]
   console.log(ans)
   for (let i = 1; i < ans.length; i++) {
     
@@ -230,7 +231,7 @@ function vercel (anushka) {
     for (let i = 0; i < ans.length; i++) {
 
 
-        console.log("addinh ans")
+        console.log("Adding Ans")
     
         console.log(ans[i])
   $("[name='group-a["+i+"][inlineRadioOptions]']").removeAttr('checked');

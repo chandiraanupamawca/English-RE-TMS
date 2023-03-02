@@ -1,5 +1,4 @@
-var getcurrentuser = localStorage.getItem("nm")
-console.log(getcurrentuser)
+var getcurrentuser = localStorage.getItem("nm");
 if (getcurrentuser) {
     //
 } else {
