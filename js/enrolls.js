@@ -9,7 +9,7 @@ function manen (result,xz,password){
             Swal.fire({
                   title: 'Enrolling new student!',
                   html: 'Updating Database in <b></b> milliseconds.',
-                  timer: 2000,
+                  timer: 3000,
                   timerProgressBar: true,
                   didOpen: () => {
                     Swal.showLoading()
@@ -22,55 +22,67 @@ function manen (result,xz,password){
                     clearInterval(timerInterval)
                   }
                 })
-            st.auth().getUserByEmail(xz["pn"]+"@englishre.xyz")
-            .then((userRecord) => {
-              // See the UserRecord reference doc for the contents of userRecord.
-              uid = userRecord.uid
-              st.database().ref("enroll/"+uid+"/"+cid+"/"+$$('enlist').value).update({
-                pay:"ok",
-          ts:Math.floor(Date.now() / 1000),
-          md:"Teacher",
-          fee:clzfeeam.toString(),
-          cid:cid,
-          cname:classname,
-          mid:$$('enlist').value,
-          sid:password,
-          stname:xz["fn"]+" "+xz["ln"],
-          tname:localStorage.nm,
-          uid:uid
-          
-          }).then((mm)=>{
-          firebase.database().ref("pay/"+cid+"/"+password+"/"+$$('enlist').value).update({
-                pay:"ok",
-          ts:Math.floor(Date.now() / 1000),
-          md:"Teacher",
-          fee:clzfeeam.toString(),
-          cid:cid,
-          cname:classname,
-          mid:$$('enlist').value,
-          sid:password,
-          stname:xz["fn"]+" "+xz["ln"],
-          tname:localStorage.nm,
-          uid:uid
-          }).then((mm)=>{
-          
-          Swal.fire(
-                'Enrolled!',
-                "A new payment for the Student ID: <b>"+ "RE"+("000" + password ).slice(-4) + "</b> has been done for the month of <b>"+ $$('enlist').value+"</b>" ,
-                'success'
-              )
-              telenot(  "✅ A new payment for the Student ID: <b>"+ "RE"+("000" + password ).slice(-4) + "</b> has been done for the month of <b>"+ $$('enlist').value+"</b>"+"\nBy "+localStorage.nm)
-          })})
-            })
-            .catch((error) => {
-              console.log('Error fetching user data:', error);
-              alert('Error fetching user data:', error)
-            });
-          
-                      
-                      
-                      
-                                  }
+                const email = xz["pn"]+"@englishre.xyz"; // Replace with the user's email address
+                const url = "https://server-09.englishre.xyz/getuserid"; // Replace with the server URL
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", url);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onload = () => {
+                      if (xhr.status === 200) {
+                            uid = xhr.responseText
+                            st.database().ref("enroll/"+uid+"/"+cid+"/"+$$('enlist').value).update({
+                              pay:"ok",
+                        ts:Math.floor(Date.now() / 1000),
+                        md:"Teacher",
+                        fee:clzfeeam.toString(),
+                        cid:cid,
+                        cname:classname,
+                        mid:$$('enlist').value,
+                        sid:password,
+                        stname:xz["fn"]+" "+xz["ln"],
+                        tname:localStorage.nm,
+                        uid:uid
+                        
+                        }).then((mm)=>{
+                        firebase.database().ref("pay/"+cid+"/"+password+"/"+$$('enlist').value).update({
+                              pay:"ok",
+                        ts:Math.floor(Date.now() / 1000),
+                        md:"Teacher",
+                        fee:clzfeeam.toString(),
+                        cid:cid,
+                        cname:classname,
+                        mid:$$('enlist').value,
+                        sid:password,
+                        stname:xz["fn"]+" "+xz["ln"],
+                        tname:localStorage.nm,
+                        uid:uid
+                        }).then((mm)=>{
+                        
+                        Swal.fire(
+                              'Enrolled!',
+                              "A new payment for the Student ID: <b>"+ "RE"+("000" + password ).slice(-4) + "</b> has been done for the month of <b>"+ $$('enlist').value+"</b>" ,
+                              'success'
+                            )
+                            telenot(  "✅ A new payment for the Student ID: <b>"+ "RE"+("000" + password ).slice(-4) + "</b> has been done for the month of <b>"+ $$('enlist').value+"</b>"+"\nBy "+localStorage.nm)
+                        })})
+                          
+                          .catch((error) => {
+                            console.log('Error fetching user data:', error);
+                            alert('Error fetching user data:', error)
+                          });
+                        } else {
+                              Swal.fire({
+                                    icon: 'error',
+                                    title: 'An Error Occured!',
+                                    text: xhr.statusText
+                              })
+                        }
+                  };
+                  xhr.onerror = () => {
+                        console.error(xhr.statusText);
+                  };
+                  xhr.send(JSON.stringify({ email }));
+      }
 }
 async function enrollstx () {
       const { value: password } = await Swal.fire({

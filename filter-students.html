@@ -35,6 +35,7 @@
 			href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
 			rel="stylesheet"
 			/>
+		<script src="js/telenot.js"></script>
 		<!-- Icons. Uncomment required icon fonts -->
 		<link rel="stylesheet" href="assets/vendor/fonts/boxicons.css" />
 		<script src="js/pdf.js"></script>
@@ -70,9 +71,6 @@
 			}
 			.hellocen{ align-self: center!important;align-items: center!important;align-content: center!important; text-align: center!important;
 			}
-            .margin-r-5{
-                margin-right: 5px;
-            }
 		</style>
 		<link rel="stylesheet" href="assets/css/demo.css" />
 		<!-- Vendors CSS -->
@@ -93,6 +91,71 @@
 		.w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#4CAF50!important}
 	</style>
 	<body>
+		<script>
+			var temp345 = 0;
+			      Swal.fire({
+			icon: 'info',
+			title: 'Updating...',
+			showConfirmButton: false,
+			timer: 10000
+			})
+		</script>
+		<script>
+			// Your web app's Firebase configuration
+			function ver (a) {
+			const Toast = Swal.mixin({
+			toast: true,
+			position: 'bottom-end',
+			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+			toast.addEventListener('mouseenter', Swal.stopTimer)
+			toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+			})
+			
+			Toast.fire({
+			icon: 'success',
+			title: a
+			})
+			}
+			
+			
+			
+			var path = "login/connection/unix"
+			const preObject = document.getElementById(path);
+			// Create References
+			const dbRefObject = firebase.database().ref().child(path);
+			
+			// Sync object changes
+			dbRefObject.on('value', snap => ver(snap.val()));
+			
+			
+			function prof (x) {
+			
+			document.getElementById("dp2").src = x["pic"];
+			document.getElementById("dp").src = x["pic"];
+			document.getElementById("name2").innerText= localStorage.getItem("nm")
+			};
+			var path2= "teachers/"+pn+"/info"
+			const preObject2 = document.getElementById(path2);
+			// Create References
+			const dbRefObject2 = firebase.database().ref().child(path2);
+			
+			// Sync object changes
+			dbRefObject2.on('value', snap => prof(snap.val()));
+			
+			
+			
+			
+
+
+
+  
+			
+		</script>
+
 		<!-- Layout wrapper -->
 		<div class="layout-wrapper layout-content-navbar">
 		<div class="layout-container">
@@ -180,12 +243,12 @@
 							<div data-i18n="Reports">Students</div>
 						</a>
 						<ul class="menu-sub">
-							<li class="menu-item active">
+							<li class="menu-item">
 								<a href="students" class="menu-link">
 									<div data-i18n="Students">All Students</div>
 								</a>
 							</li>
-							<li class="menu-item">
+							<li class="menu-item active">
 								<a href="filter-students" class="menu-link">
 									<div data-i18n="Students">Filter Students</div>
 								</a>
@@ -352,24 +415,185 @@
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<!-- Users Table -->
 						<div class="card">
-							<h5 class="card-header">All Students</h5>
-							<div style="overflow: auto;">
-								<table id="studentsTable" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
+							<h5 class="card-header">Associate Students</h5>
+							<div style="margin-left: 20px; margin-right: 20px;">
+								<p>Use Filters to search quickly</p>
+								<form onsubmit="return false">
+									<div class="row">
+										<div class="mb-1 col-md-2">
+											<select onchange="ref()" id="stf" class="form-control me-2">
+												<option selected="" value="0">All Streams</option>
+												<option value="OL">OL</option>
+												<option value="Bio">Bio</option>
+												<option value="Maths">Maths</option>
+												<option value="Art">Art</option>
+												<option value="Commerce">Commerce</option>
+												<option value="Technology">Technology</option>
+											</select>
+										</div>
+										<div class="mb-1 col-md-2">
+											<select onchange="ref()" id="yearf"  class="form-control me-2">
+												<option selected="" value=0>All Years</option>
+												<option value="2022">2022</option>
+												<option value="2023">2023</option>
+												<option value="2024">2024</option>
+												<option value="2025">2025</option>
+												<option value="2026">2026</option>
+												<option value="2027">2027</option>
+												<option value="2028">2028</option>
+												<option value="2029">2029</option>
+												<option value="2030">2030</option>
+											</select>
+										</div>
+										<div class="mb-1 col-md-2">
+											<select onchange="ref()" id="sts" class="form-control me-2">
+												<option selected=""  value=0>All Status</option>
+												<option value="Active">Active</option>
+												<option value="Inactive">Inactive</option>
+											</select>
+										</div>
+										<div class="mb-1 col-md">
+											<input class="form-control me-2" id="mys" type="search" placeholder="Search Users" aria-label="Search">
+										</div>
+									</div>
+									<div>
+										<div class="mt-2">
+											<button class="btn btn-primary me-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+											Display Options
+											</button>
+											<br>	<br>
+											<div class="collapse" id="collapseExample">
+												<div class="d-grid d-sm-flex p-3 border mt-2">
+													<div class="col-md-4">
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="dpc" checked="">
+															<label class="form-check-label" for="defaultCheck3"> Image </label>
+														</div>
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="sid" checked="">
+															<label class="form-check-label" for="defaultCheck3"> Student ID </label>
+														</div>
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="gnc" checked="">
+															<label class="form-check-label" for="defaultCheck3"> Gender </label>
+														</div>
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="stc" checked="">
+															<label class="form-check-label" for="defaultCheck3"> Stream </label>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="yrc" checked="">
+															<label class="form-check-label" for="defaultCheck3"> Exam Year </label>
+														</div>
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="pnc" checked="">
+															<label class="form-check-label" for="defaultCheck3"> Phone Number </label>
+														</div>
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="wac" checked="">
+															<label class="form-check-label" for="defaultCheck3"> WhatsApp Number </label>
+														</div>
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="emc" checked="">
+															<label class="form-check-label" for="defaultCheck3"> E-Mail </label>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="adc" checked="">
+															<label class="form-check-label" for="defaultCheck3"> Address </label>
+														</div>
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="bdc" checked="">
+															<label class="form-check-label" for="defaultCheck3"> Birthday </label>
+														</div>
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="stsc" checked="">
+															<label class="form-check-label" for="defaultCheck3"> Status </label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div  >
+								<table id="tt" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
 									<thead>
 										<tr>
-											<th>ID</th>
+											<th>Picture</th>
+											<th>Student ID</th>
 											<th>First Name</th>
 											<th>Last Name</th>
 											<th>Gender</th>
-											<th>Birthday</th>
-											<th>Year</th>
 											<th>Stream</th>
-											<th>Phone</th>
+											<th>Exam Year</th>
+											<th>Phone Number</th>
+											<th>WhatsApp Number</th>
+											<th>E-Mail</th>
+											<th>Address</th>
+											<th>Birthday</th>
 											<th>Status</th>
 											<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody class="table-border-bottom-0">
+					
+										<tr style="display:none ;">
+											<td>
+											
+											</td>
+											<td>
+											
+											</td>
+											<td>
+											
+											</td>
+											<td>
+										>
+											</td>
+											<td>
+										
+											</td>
+											<td>
+											
+											</td>
+											<td>
+											
+											</td>
+											<td>
+											
+											</td>
+											<td>
+											
+											</td>
+											<td>
+												
+											</td>
+											<td>
+												
+											</td>
+											<td>
+											
+											</td>
+											<td>
+										
+											</td>
+											<td>
+												<div class="dropdown">
+													<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+													<i class="bx bx-dots-vertical-rounded"></i>
+													</button>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+														<a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+													</div>
+												</div>
+											</td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -423,331 +647,16 @@
 		<!-- Vendors JS -->
 		<!-- Main JS -->
 		<script src="js/logged-out-redirect.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/>
+ 
+		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
+		<link rel="stylesheet" href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css">
+		<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+<script src="https://cdn.datatables.net/fixedcolumns/3.3.1/js/dataTables.fixedColumns.min.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script src="js/users.js"></script>
 		<script src="js/setclasslist.js"></script>
-        <script>
-			Swal.fire({
-				title: 'Please Wait...',
-				icon: 'info',
-				showConfirmButton: false
-			})
-
-			// Set Index to Display Student ID
-            let index = 0;
-
-            // Retrieve a reference to the "students" node in Firebase
-            var studentsRef = firebase.database().ref("students");
-          
-            // Attach a listener to the reference to retrieve the data when it changes
-            studentsRef.on("value", function(snapshot) {
-              // Clear the existing rows from the table body
-              var tbody = document.getElementById("studentsTable").getElementsByTagName("tbody")[0];
-              tbody.innerHTML = "";
-          
-              // Iterate over the students data and add a row to the table for each student
-              snapshot.forEach(function(childSnapshot) {
-                // Get the student data from the child snapshot
-                var student = childSnapshot.val();
-                console.log(student)
-                index = index +1
-          
-                // Create a new row element
-                var row = document.createElement("tr");
-                // Set ID Attribute
-                row.setAttribute('id', index);
-          
-                // Add the first name, last name, gender, birthday, and email to the row
-                var studentIdCell = document.createElement("td");
-				studentIdCell.setAttribute('id', 'id-'+student.pn);
-                studentIdCell.textContent = "RE"+("000" + index).slice(-4);
-                row.appendChild(studentIdCell);
-                
-                // var pictureCell = document.createElement("td");
-                // if(student.dp == null) {
-                //     imageURL = "assets/img/icons/1.png"
-                // } else {
-                //     imageURL = student.dp
-                // }
-                // pictureCell.innerHTML = '<img src="' + imageURL +'" alt="Avatar" class="rounded-circle" style="width: 35%; border: solid 1px;">';
-                // row.appendChild(pictureCell);
-
-                var firstNameCell = document.createElement("td");
-                firstNameCell.setAttribute('id', 'fn-'+student.pn);
-                firstNameCell.textContent = student.fn;
-                row.appendChild(firstNameCell);
-          
-                var lastNameCell = document.createElement("td");
-                lastNameCell.setAttribute('id', 'ln-'+student.pn);
-                lastNameCell.textContent = student.ln;
-                row.appendChild(lastNameCell);
-          
-                var genderCell = document.createElement("td");
-                genderCell.setAttribute('id', 'gn-'+student.pn);
-                genderCell.textContent = student.gn;
-                row.appendChild(genderCell);
-
-                var birthdayCell = document.createElement("td");
-                birthdayCell.setAttribute('id', 'bd-'+student.pn);
-                birthdayCell.textContent = student.bd;
-                row.appendChild(birthdayCell);
-
-                var streamCell = document.createElement("td");
-                streamCell.setAttribute('id', 'st-'+student.pn);
-                streamCell.textContent = student.st;
-                row.appendChild(streamCell);
-
-                var examYearCell = document.createElement("td");
-                examYearCell.setAttribute('id', 'yr-'+student.pn);
-                examYearCell.textContent = student.yr;
-                row.appendChild(examYearCell);
-
-                var phoneNumberCell = document.createElement("td");
-                phoneNumberCell.setAttribute('id', 'pn-'+student.pn);
-                phoneNumberCell.textContent = student.pn;
-                row.appendChild(phoneNumberCell);
-
-				var statusCell = document.createElement("td");
-                statusCell.setAttribute('id', 'status-'+student.pn);
-                statusCell.innerHTML = '<span class="badge bg-success me-1">Active</span>'
-                row.appendChild(statusCell);
-          
-                // Add an action button to the row with the student's phone number as the ID
-                var actionCell = document.createElement("td");
-                var actionButton = document.createElement("button");
-                var actionButton2 = document.createElement("button");
-                var actionButton3 = document.createElement("button");
-
-                actionButton.textContent = "View";
-                actionButton2.textContent = "Ban";
-                actionButton3.textContent = "Unban";
-
-                actionButton.setAttribute("id", student.pn);
-                actionButton.setAttribute("onclick", 'view('+student.pn+')');
-                actionButton.setAttribute("class", "btn btn-sm btn-primary margin-r-5");
-
-                actionButton2.setAttribute("id", 'ban-'+student.pn);
-                actionButton2.setAttribute("onclick", 'ban('+student.pn+')');
-                actionButton2.setAttribute("class", "btn btn-sm btn-danger");
-
-				actionButton3.setAttribute("id", 'unban-'+student.pn);
-                actionButton3.setAttribute("onclick", 'unban('+student.pn+')');
-                actionButton3.setAttribute("class", "btn btn-sm btn-danger");
-                actionButton3.setAttribute("style", "display: none");
-
-                actionCell.appendChild(actionButton);
-                actionCell.appendChild(actionButton2);
-                actionCell.appendChild(actionButton3);
-                row.appendChild(actionCell);
-          
-                // Add the row to the table body
-                tbody.appendChild(row);
-              });
-            });
-          </script>
-		  <script>
-            // Retrieve a reference to the "banned" node in Firebase
-            var bannedRef = firebase.database().ref("banned");
-
-            // Attach a listener to the reference to retrieve the data when it changes
-            bannedRef.on("value", function(snapshot) {
-                snapshot.forEach(function(childSnapshot) {
-                // Get the student data from the child snapshot
-                var banned = childSnapshot.val();
-                console.log(banned.pn)
-				document.getElementById('status-'+banned.pn).innerHTML = '<span class="badge bg-danger me-1">Banned</span>'
-				document.getElementById('ban-'+banned.pn).style.display = 'none'
-				document.getElementById('unban-'+banned.pn).style.display = 'inline'
-                })
-				swal.close()
-            })
-        </script>
-		<script>
-			function view(phoneNb){
-				var pnWithZero = '0'+phoneNb
-				var studentIdVal = document.getElementById('id-'+pnWithZero).innerText
-				var studentId = parseInt(studentIdVal.slice(2))
-				console.log(studentId)
-
-				var studentDataRef = firebase.database().ref('students/' + studentId);
-				studentDataRef.on('value', (snapshot) => {
-				const dataReceived = snapshot.val();
-				if(dataReceived!=null){
-					console.log(dataReceived)
-
-					// Set Data Lists
-					var nameInput = '<div class="mb-2 row" style="width: 100%"><label for="html5-text-input" class="col-md-2 col-form-label">Name</label><div class="col-md-10"><input class="form-control" disabled value="'+ dataReceived.fn + ' ' +dataReceived.ln +'" id="studentName"></div></div>'
-					var genderInput = '<div class="mb-2 row" style="width: 100%"><label for="html5-text-input" class="col-md-2 col-form-label">Gender</label><div class="col-md-10"><input class="form-control" disabled value="'+ dataReceived.gn +'" id="studentGender"></div></div>'
-					var addressInput = '<div class="mb-2 row" style="width: 100%"><label for="html5-text-input" class="col-md-2 col-form-label">Addres</label><div class="col-md-10"><input class="form-control" disabled value="'+ dataReceived.ad +'" id="studentAddress"></div></div>'
-					var birthdayInput = '<div class="mb-2 row" style="width: 100%"><label for="html5-text-input" class="col-md-2 col-form-label">Birth</label><div class="col-md-10"><input class="form-control" disabled value="'+ dataReceived.bd +'" id="studentBirthday"></div></div>'
-					var phoneInput = '<div class="mb-2 row" style="width: 100%"><label for="html5-text-input" class="col-md-2 col-form-label">Phone</label><div class="col-md-10"><input class="form-control" disabled value="'+ dataReceived.pn +'" id="studentPhone"></div></div>'
-					var whatsAppInput = '<div class="mb-2 row" style="width: 100%"><label for="html5-text-input" class="col-md-2 col-form-label">WA</label><div class="col-md-10"><input class="form-control" disabled value="'+ dataReceived.wa +'" id="studentWhatsApp"></div></div>'
-					var examInput = '<div class="mb-2 row" style="width: 100%"><label for="html5-text-input" class="col-md-2 col-form-label">Exam</label><div class="col-md-10"><input class="form-control" disabled value="'+ dataReceived.yr + ' ' + dataReceived.st +'" id="studentExam"></div></div>'
-					var emailInput = '<div class="mb-2 row" style="width: 100%"><label for="html5-text-input" class="col-md-2 col-form-label">E-Mail</label><div class="col-md-10"><input class="form-control" disabled value="'+ dataReceived.em +'" id="studentEmail"></div></div>'
-					var passInput = '<div class="mb-2 row" style="width: 100%"><label for="html5-text-input" class="col-md-2 col-form-label">Pass</label><div class="col-md-10"><input class="form-control" disabled value="'+ dataReceived.pw +'" id="studentPassword"></div></div>'
-
-					Swal.fire({
-					title: 'Student Information: ' + studentIdVal + '\n' + dataReceived.fn + ' ' + dataReceived.ln,
-					html: nameInput + '\n' + genderInput + '\n' + addressInput + '\n' +birthdayInput + '\n' + phoneInput + '\n' + whatsAppInput + '\n' + examInput + '\n' + emailInput + '\n' + passInput
-					})
-
-				} else {
-					Swal.fire({
-					title: 'An Error Occured!',
-					icon: 'error',
-					text: 'Student Data could not be fetched'
-					})
-				}
-				});
-			}
-
-			function ban(phoneNb){
-				var pnWithZero = "0"+phoneNb
-				var studentIdVal = document.getElementById('id-'+pnWithZero).innerText
-				var studentId = parseInt(studentIdVal.slice(2))
-				var studentEmail = pnWithZero + '@englishre.xyz'
-				console.log(studentEmail)
-
-				Swal.fire({
-					title: 'Are you sure?',
-					text: "This Student will not be able to use this platform until you unban!",
-					icon: 'warning',
-					showCancelButton: true,
-					confirmButtonColor: '#3085d6',
-					cancelButtonColor: '#d33',
-					confirmButtonText: 'Confirm'
-					}).then((result) => {
-						if (result.isConfirmed) {
-							Swal.fire({
-								title: 'Updating...',
-								icon: 'info',
-								showConfirmButton: false
-							})
-							studentID = studentId
-							email = studentEmail
-							stuPhoneNumber = pnWithZero
-							const url = "https://server-09.englishre.xyz/banstudent"; // Replace with the server URL
-							const xhr = new XMLHttpRequest();
-							xhr.open("POST", url);
-							xhr.setRequestHeader("Content-Type", "application/json");
-							xhr.onload = () => {
-								if (xhr.status === 200) {
-									firebase.database().ref('banned/' + studentID).set({
-										isBanned: true,
-										pn: stuPhoneNumber
-									})
-									.then(() => {
-										Swal.fire({
-											title: 'Student Banned Successfully',
-											icon: 'success',
-											text: 'Student ' + studentIdVal + ' banned successfully!'
-										})
-									})
-									.catch((error) => {
-										Swal.fire({
-											title: 'Error Updating Database',
-											icon: 'error',
-											text: 'Student ' + studentIdVal + ' banned successfully!\nAn Error occured while updating Database'
-										})
-									});
-								} else {
-									Swal.fire({
-										title: 'An Error Occured!',
-										icon: 'error',
-										text: xhr.statusText
-									})
-									Swal.fire({
-										title: 'An Error Occured',
-										icon: 'info',
-										text: xhr.statusText,
-										confirmButtonText: 'Close',
-									})
-									console.error(xhr.statusText);
-								}
-							};
-							xhr.onerror = () => {
-								Swal.fire({
-									title: 'An Error Occured',
-									icon: 'info',
-									text: xhr.statusText,
-									confirmButtonText: 'Close',
-								})
-								console.error(xhr.statusText);
-							};
-							xhr.send(JSON.stringify({ email }));
-						}
-					})
-			}
-			
-			function unban(phoneNb){
-				var pnWithZero = "0"+phoneNb
-				var studentIdVal = document.getElementById('id-'+pnWithZero).innerText
-				var studentId = parseInt(studentIdVal.slice(2))
-				var studentEmail = pnWithZero + '@englishre.xyz'
-				console.log(studentEmail)
-
-				Swal.fire({
-					title: 'Are you sure?',
-					text: "This Student will be able to use this platform again!",
-					icon: 'warning',
-					showCancelButton: true,
-					confirmButtonColor: '#3085d6',
-					cancelButtonColor: '#d33',
-					confirmButtonText: 'Confirm'
-					}).then((result) => {
-						if (result.isConfirmed) {
-							Swal.fire({
-								title: 'Updating...',
-								icon: 'info',
-								showConfirmButton: false
-							})
-							studentID = studentId
-							email = studentEmail
-							stuPhoneNumber = pnWithZero
-							const url = "https://server-09.englishre.xyz/unbanstudent"; // Replace with the server URL
-							const xhr = new XMLHttpRequest();
-							xhr.open("POST", url);
-							xhr.setRequestHeader("Content-Type", "application/json");
-							xhr.onload = () => {
-								if (xhr.status === 200) {
-									firebase.database().ref('banned/' + studentID).remove()
-									.then(() => {
-										Swal.fire({
-											title: 'Student Unbanned Successfully',
-											icon: 'success',
-											text: 'Student ' + studentIdVal + ' unbanned successfully!'
-										})
-									})
-									.catch((error) => {
-										Swal.fire({
-											title: 'Error Updating Database',
-											icon: 'error',
-											text: 'Student ' + studentIdVal + ' unbanned successfully!\nAn Error occured while updating Database'
-										})
-									});
-								} else {
-									Swal.fire({
-										title: 'An Error Occured',
-										icon: 'info',
-										text: xhr.statusText,
-										confirmButtonText: 'Close',
-									})
-									console.error(xhr.statusText);
-								}
-							};
-							xhr.onerror = () => {
-								Swal.fire({
-									title: 'An Error Occured',
-									icon: 'info',
-									text: xhr.statusText,
-									confirmButtonText: 'Close',
-								})
-								console.error(xhr.statusText);
-							};
-							xhr.send(JSON.stringify({ email }));
-						}
-					})
-			}
-		</script>
 
 
 <style>
@@ -763,6 +672,5 @@ border: #8070d4;
 		<!-- Page JS -->
 		<!-- Place this tag in your head or just before your close body tag. -->
 		<script async defer src="https://buttons.github.io/buttons.js"></script>
-	<!-- Code injected by live-server -->
-</body>
+	</body>
 </html>
