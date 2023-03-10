@@ -190,6 +190,11 @@
 									<div data-i18n="Students">Filter Students</div>
 								</a>
 							</li>
+							<li class="menu-item">
+								<a href="st-change-password.html" class="menu-link">
+									<div data-i18n="Students">Change Password</div>
+								</a>
+							</li>
 						</ul>
 					</li>
 					<!-- Settings -->
@@ -458,7 +463,7 @@
           
                 // Add the first name, last name, gender, birthday, and email to the row
                 var studentIdCell = document.createElement("td");
-				studentIdCell.setAttribute('id', 'id-'+student.pn);
+				studentIdCell.setAttribute('id', 'id-'+parseInt(student.pn));
                 studentIdCell.textContent = "RE"+("000" + index).slice(-4);
                 row.appendChild(studentIdCell);
                 
@@ -472,42 +477,42 @@
                 // row.appendChild(pictureCell);
 
                 var firstNameCell = document.createElement("td");
-                firstNameCell.setAttribute('id', 'fn-'+student.pn);
+                firstNameCell.setAttribute('id', 'fn-'+parseInt(student.pn));
                 firstNameCell.textContent = student.fn;
                 row.appendChild(firstNameCell);
           
                 var lastNameCell = document.createElement("td");
-                lastNameCell.setAttribute('id', 'ln-'+student.pn);
+                lastNameCell.setAttribute('id', 'ln-'+parseInt(student.pn));
                 lastNameCell.textContent = student.ln;
                 row.appendChild(lastNameCell);
           
                 var genderCell = document.createElement("td");
-                genderCell.setAttribute('id', 'gn-'+student.pn);
+                genderCell.setAttribute('id', 'gn-'+parseInt(student.pn));
                 genderCell.textContent = student.gn;
                 row.appendChild(genderCell);
 
                 var birthdayCell = document.createElement("td");
-                birthdayCell.setAttribute('id', 'bd-'+student.pn);
+                birthdayCell.setAttribute('id', 'bd-'+parseInt(student.pn));
                 birthdayCell.textContent = student.bd;
                 row.appendChild(birthdayCell);
 
                 var streamCell = document.createElement("td");
-                streamCell.setAttribute('id', 'st-'+student.pn);
+                streamCell.setAttribute('id', 'st-'+parseInt(student.pn));
                 streamCell.textContent = student.st;
                 row.appendChild(streamCell);
 
                 var examYearCell = document.createElement("td");
-                examYearCell.setAttribute('id', 'yr-'+student.pn);
+                examYearCell.setAttribute('id', 'yr-'+parseInt(student.pn));
                 examYearCell.textContent = student.yr;
                 row.appendChild(examYearCell);
 
                 var phoneNumberCell = document.createElement("td");
-                phoneNumberCell.setAttribute('id', 'pn-'+student.pn);
-                phoneNumberCell.textContent = student.pn;
+                phoneNumberCell.setAttribute('id', 'pn-'+parseInt(student.pn));
+                phoneNumberCell.textContent = parseInt(student.pn);
                 row.appendChild(phoneNumberCell);
 
 				var statusCell = document.createElement("td");
-                statusCell.setAttribute('id', 'status-'+student.pn);
+                statusCell.setAttribute('id', 'status-'+parseInt(student.pn));
                 statusCell.innerHTML = '<span class="badge bg-success me-1">Active</span>'
                 row.appendChild(statusCell);
           
@@ -516,27 +521,34 @@
                 var actionButton = document.createElement("button");
                 var actionButton2 = document.createElement("button");
                 var actionButton3 = document.createElement("button");
+                var actionButton4 = document.createElement("button");
+                var actionButton5 = document.createElement("button");
 
                 actionButton.textContent = "View";
                 actionButton2.textContent = "Ban";
                 actionButton3.textContent = "Unban";
+                actionButton4.textContent = "Enroll";
 
-                actionButton.setAttribute("id", student.pn);
-                actionButton.setAttribute("onclick", 'view('+student.pn+')');
+                actionButton.setAttribute("id", parseInt(student.pn));
+                actionButton.setAttribute("onclick", 'view('+parseInt(student.pn)+')');
                 actionButton.setAttribute("class", "btn btn-sm btn-primary margin-r-5");
 
-                actionButton2.setAttribute("id", 'ban-'+student.pn);
-                actionButton2.setAttribute("onclick", 'ban('+student.pn+')');
-                actionButton2.setAttribute("class", "btn btn-sm btn-danger");
+                actionButton2.setAttribute("id", 'ban-'+parseInt(student.pn));
+                actionButton2.setAttribute("onclick", 'ban('+parseInt(student.pn)+')');
+                actionButton2.setAttribute("class", "btn btn-sm btn-danger margin-r-5");
 
-				actionButton3.setAttribute("id", 'unban-'+student.pn);
-                actionButton3.setAttribute("onclick", 'unban('+student.pn+')');
-                actionButton3.setAttribute("class", "btn btn-sm btn-danger");
+				actionButton3.setAttribute("id", 'unban-'+parseInt(student.pn));
+                actionButton3.setAttribute("onclick", 'unban('+parseInt(student.pn)+')');
+                actionButton3.setAttribute("class", "btn btn-sm btn-danger margin-r-5");
                 actionButton3.setAttribute("style", "display: none");
+
+                actionButton4.setAttribute("onclick", 'enrollments('+parseInt(student.pn)+')');
+                actionButton4.setAttribute("class", "btn btn-sm btn-dark");
 
                 actionCell.appendChild(actionButton);
                 actionCell.appendChild(actionButton2);
                 actionCell.appendChild(actionButton3);
+                actionCell.appendChild(actionButton4);
                 row.appendChild(actionCell);
           
                 // Add the row to the table body
@@ -553,17 +565,17 @@
                 snapshot.forEach(function(childSnapshot) {
                 // Get the student data from the child snapshot
                 var banned = childSnapshot.val();
-                console.log(banned.pn)
-				document.getElementById('status-'+banned.pn).innerHTML = '<span class="badge bg-danger me-1">Banned</span>'
-				document.getElementById('ban-'+banned.pn).style.display = 'none'
-				document.getElementById('unban-'+banned.pn).style.display = 'inline'
+                console.log(parseInt(banned.pn))
+				document.getElementById('status-'+parseInt(banned.pn)).innerHTML = '<span class="badge bg-danger me-1">Banned</span>'
+				document.getElementById('ban-'+parseInt(banned.pn)).style.display = 'none'
+				document.getElementById('unban-'+parseInt(banned.pn)).style.display = 'inline'
                 })
 				swal.close()
             })
         </script>
 		<script>
 			function view(phoneNb){
-				var pnWithZero = '0'+phoneNb
+				var pnWithZero = phoneNb
 				var studentIdVal = document.getElementById('id-'+pnWithZero).innerText
 				var studentId = parseInt(studentIdVal.slice(2))
 				console.log(studentId)
@@ -601,10 +613,10 @@
 			}
 
 			function ban(phoneNb){
-				var pnWithZero = "0"+phoneNb
+				var pnWithZero = phoneNb
 				var studentIdVal = document.getElementById('id-'+pnWithZero).innerText
 				var studentId = parseInt(studentIdVal.slice(2))
-				var studentEmail = pnWithZero + '@englishre.xyz'
+				var studentEmail = '0' + pnWithZero + '@englishre.xyz'
 				console.log(studentEmail)
 
 				Swal.fire({
@@ -618,9 +630,12 @@
 					}).then((result) => {
 						if (result.isConfirmed) {
 							Swal.fire({
-								title: 'Updating...',
-								icon: 'info',
-								showConfirmButton: false
+								icon: "info",
+								title: "Updating...",
+								showConfirmButton:false,
+								allowEscapeKey:false,
+								allowOutsideClick:false,
+								allowEnterKey:false
 							})
 							studentID = studentId
 							email = studentEmail
@@ -633,7 +648,7 @@
 								if (xhr.status === 200) {
 									firebase.database().ref('banned/' + studentID).set({
 										isBanned: true,
-										pn: stuPhoneNumber
+										pn: '0'+stuPhoneNumber
 									})
 									.then(() => {
 										Swal.fire({
@@ -679,10 +694,10 @@
 			}
 			
 			function unban(phoneNb){
-				var pnWithZero = "0"+phoneNb
+				var pnWithZero = phoneNb
 				var studentIdVal = document.getElementById('id-'+pnWithZero).innerText
 				var studentId = parseInt(studentIdVal.slice(2))
-				var studentEmail = pnWithZero + '@englishre.xyz'
+				var studentEmail = '0' + pnWithZero + '@englishre.xyz'
 				console.log(studentEmail)
 
 				Swal.fire({
@@ -696,9 +711,12 @@
 					}).then((result) => {
 						if (result.isConfirmed) {
 							Swal.fire({
-								title: 'Updating...',
-								icon: 'info',
-								showConfirmButton: false
+								icon: "info",
+								title: "Updating...",
+								showConfirmButton:false,
+								allowEscapeKey:false,
+								allowOutsideClick:false,
+								allowEnterKey:false
 							})
 							studentID = studentId
 							email = studentEmail
@@ -715,6 +733,13 @@
 											title: 'Student Unbanned Successfully',
 											icon: 'success',
 											text: 'Student ' + studentIdVal + ' unbanned successfully!'
+										}).then((result) => {
+											if (result.isConfirmed) {
+												location.reload()
+											}
+											else if (result.isDismissed) {
+												location.reload()
+											}
 										})
 									})
 									.catch((error) => {
@@ -748,8 +773,42 @@
 					})
 			}
 		</script>
+		<script>
+			function enrollments(phoneNb) {
+				
+				Swal.fire({
+					title: 'Please Wait...',
+					icon: 'info',
+					showConfirmButton: false
+				})
 
-
+				
+				const email = '0'+phoneNb+'@englishre.xyz'; // Replace with the user's email address
+				console.log(email)
+				const url = "https://server-02.englishre.xyz/getuserid"; // Replace with the server URL
+				const xhr = new XMLHttpRequest();
+				xhr.open("POST", url);
+				xhr.setRequestHeader("Content-Type", "application/json");
+				xhr.onload = () => {
+					if (xhr.status === 200) {
+					console.log(xhr.responseText);
+					} else {
+						var systemID = xhr.statusText;
+						console.log(systemID);
+						var enrollmentRef = firebase.database().ref('enroll/' + systemID);
+						enrollmentRef.on('value', (snapshot) => {
+							const enrollment = snapshot.val();
+							console.log(enrollment)
+						})
+					}
+				};
+				xhr.onerror = () => {
+					console.error(xhr.statusText);
+				};
+				xhr.send(JSON.stringify({ email }));
+			}
+		</script>
+		
 <style>
 	input {
 border: #8070d4;
